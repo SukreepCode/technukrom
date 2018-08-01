@@ -1,6 +1,5 @@
 const webpack = require("webpack");
-// global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-require("dotenv").config();
+require('now-env'); // using now-env instead of `require("dotenv").config();`
 
 module.exports = {
   webpack: config => {
@@ -12,9 +11,9 @@ module.exports = {
 
     config.plugins.push(
       new webpack.DefinePlugin({
-        "process.env.F_PROJECT_ID": JSON.stringify(process.env.F_PROJECT_ID),
-        "process.env.F_AUTH_DOMAIN": JSON.stringify(process.env.F_AUTH_DOMAIN),
-        "process.env.F_API_KEY": JSON.stringify(process.env.F_API_KEY),
+        "process.env.FIREBASE_PROJECT_ID": JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+        "process.env.FIREBASE_AUTH_DOMAIN": JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+        "process.env.FIREBASE_API_KEY": JSON.stringify(process.env.FIREBASE_API_KEY),
         IN_BROWSER: true
       })
     );

@@ -19,9 +19,9 @@ require("@firebase/auth");
 
 try {
   firebase.initializeApp({
-    apiKey: process.env.F_API_KEY,
-    authDomain: process.env.F_AUTH_DOMAIN,
-    projectId: process.env.F_PROJECT_ID
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID
   });
 } catch (err) {
   if (!/already exists/.test(err.message)) {
