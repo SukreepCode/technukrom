@@ -1,14 +1,15 @@
 import Layout from '../components/MyLayout.js'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
+import { db } from '../stores/firebaseInit'
 
 const Index = (props) => (
   <Layout>
-    <h1>Batman TV Shows {props.posts.length}</h1>
+    <h1>Recent Posts</h1>
     <ul>
       {props.posts.map((post) => (
-        <li key={post.id}>
-          <Link as={`/p/${post.id}`} href={`/post?id=${post.id}`}>
+        <li key={post.link}>
+          <Link href={post.link}>
             <a>{post.title}</a>
           </Link>
         </li>
@@ -17,12 +18,27 @@ const Index = (props) => (
   </Layout>
 )
 
-Index.getInitialProps = async function() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  const data = await res.json()
+Index.getInitialProps = async function () {
+  // const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  // const data = await res.json()
+  let data = []
+
+  const settings = {/* your settings... */ timestampsInSnapshots: true };
+  db.settings(settings);
+
+  try {
+    const querySnapshot = await db.collection("posts").get();
+
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+      data.push(doc.data());
+    });
+
+  } catch (e) {
+    console.log('something wrong ', e);
+  }
 
   console.log(`Show data fetched. Count: ${data.length}`)
-
   return {
     posts: data
   }
