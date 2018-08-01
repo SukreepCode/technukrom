@@ -4,11 +4,11 @@ require("dotenv").config();
 
 module.exports = {
   webpack: config => {
-    config.externals = [
-      {
-        xmlhttprequest: 'XMLHttpRequest'
-      }
-    ];
+    // config.externals = [
+    //   {
+    //     xmlhttprequest: 'XMLHttpRequest'
+    //   }
+    // ];
 
     config.plugins.push(
       new webpack.DefinePlugin({

@@ -8,9 +8,9 @@ function isNode() {
   );
 }
 
-if (isNode()) {
-  global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-}
+// if (isNode()) {
+//   global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+// }
 
 require("@firebase/polyfill");
 const firebase = require("@firebase/app").default;
