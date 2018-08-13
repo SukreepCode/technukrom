@@ -1,8 +1,7 @@
-![](assets/logo.png)
 ## Techนุกรม
-Technology + สารานุกรม = Techนุกรม
+![](assets/logo.png)
 
-Main app of Techนุกรม
+Technology + สารานุกรม = Techนุกรม
 
 Init project
 ```
