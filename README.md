@@ -1,4 +1,8 @@
-# Tech Nukrom
+![](assets/logo.png)
+## Techนุกรม
+Technology + สารานุกรม = Techนุกรม
+
+Main app of Techนุกรม
 
 Init project
 ```
