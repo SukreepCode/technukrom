@@ -8,6 +8,8 @@
     "build": "next build",
     "deploy": "now --public",
     "alias": "now alias",
+    "deploy-clean": "now rm --safe technukrom",
+    "quick-deploy": "now --public && now alias && now rm --safe --yes technukrom",
     "start": "NODE_ENV=production node server.js",
     "win-start": "cross-env NODE_ENV=production node server.js",
     "now-status": "now ls technukrom && now alias ls"

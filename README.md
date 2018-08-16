@@ -3,18 +3,36 @@
 
 Technology + สารานุกรม = Techนุกรม
 
+# Instruction (แนะนำการใช้)
+
+> อย่าอัพโหลดไฟล์ `.env`
+
+# Start dev
 Init project
 ```
 npm install -g next now cross-env
+yarn
 ```
 
 Dev
 ```
-yarn
 yarn dev
 ```
 
-Firebase things
+# Deploy
+Deploy to [now.sh](https://zeit.co/now)
+```
+yarn quick-deploy
+```
+
+Manually deploy to [now.sh](https://zeit.co/now) see more in package.json
+```
+yarn deploy       # deploy to now.sh
+yarn alias        # alias last instance deployment
+yarn deploy-clean # clean all inactive deployment
+```
+
+## Firebase
 ```
 npm install -g firebase-tools
 firebase login

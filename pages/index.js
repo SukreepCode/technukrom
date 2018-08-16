@@ -1,6 +1,5 @@
 import Layout from '../components/MyLayout.js'
 import Link from 'next/link'
-import fetch from 'isomorphic-unfetch'
 import { db } from '../stores/firebaseInit'
 
 const Index = (props) => (
@@ -31,7 +30,11 @@ Index.getInitialProps = async function () {
 
     querySnapshot.forEach((doc) => {
       console.log(`${doc.id} => ${doc.data()}`);
-      data.push(doc.data());
+      // data.push(doc.data());
+      data.push({
+        "title": doc.data().title,
+        "link": doc.data().link,
+      });
     });
 
   } catch (e) {
