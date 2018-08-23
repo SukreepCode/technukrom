@@ -1,5 +1,7 @@
 const webpack = require("webpack");
 require('now-env'); // using now-env instead of `require("dotenv").config();`
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const { ANALYZE } = process.env
 
 module.exports = {
   webpack: config => {
@@ -8,6 +10,14 @@ module.exports = {
     //     xmlhttprequest: 'XMLHttpRequest'
     //   }
     // ];
+
+    if (ANALYZE) {
+      config.plugins.push(new BundleAnalyzerPlugin({
+        analyzerMode: 'server',
+        analyzerPort: 8888,
+        openAnalyzer: true
+      }))
+    }
 
     config.plugins.push(
       new webpack.DefinePlugin({
@@ -18,5 +28,11 @@ module.exports = {
       })
     );
     return config;
+  },
+  exportPathMap: function () {
+    return {
+      '/': { page: '/' },
+      '/about': { page: '/about' }
+    }
   }
 };
