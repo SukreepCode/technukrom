@@ -1,65 +1,111 @@
 import Base from '../components/layouts/Base'
-import Link from 'next/link'
 import firebaseInit from '../stores/firebaseInit'
 import dateFormat from 'dateformat';
+import React from 'react';
+// import AsyncPostItem from '../components/AsyncPostItem';
+import PostItem from '../components/PostItem';
+import Document from 'next/document'
+import Pagination from '../components/Pagination';
 
-const Index = (props) => (
-  <Base title="Technukrom">
-    <h1>Recent Posts</h1>
+const NUM_DATA = 14;
 
-    {props.posts.map((post) => (
-      <div class="card" key={post.link}>
-        <div class="card-content">
-          <div class="columns is-mobile">
-            <div class="column is-one-fifth">{post.published}</div>
-            <div class="column">
-             <a href={post.link}>"{post.title}"</a> โดย {post.author}
-            </div>
-          </div>
-        </div>
-      </div>
-    ))}
-  </Base>
-)
+export default class Index extends Document {
 
-Index.getInitialProps = async function () {
-  const db = await firebaseInit()
-
-  let data = []
-  let querySnapshot
-
-  const settings = {/* your settings... */ timestampsInSnapshots: true };
-  db.settings(settings);
-
-  try {
-    querySnapshot = await db.collection("posts").orderBy("published", "desc").limit(14).get();
-    querySnapshot.forEach((doc) => {
-      // console.log(`${doc.id} => ${doc.data().published.toDate()}`);
-      data.push({
-        "title": doc.data().title,
-        "link": doc.data().link,
-        "author": doc.data().author,
-        "published": dateFormat(doc.data().published.toDate(), "mediumDate")
-      });
-    })
-  } catch (e) {
-    console.log('something wrong ', e);
+  constructor(props) {
+    super(props)
+    this.state = {
+      posts: createEmptyPosts()
+    };
   }
 
-  // await Promise.all(
-  //   querySnapshot.forEach((doc) => {
-  //     console.log(`${doc.id} => ${doc.data()}`);
-  //     data.push({
-  //       "title": doc.data().title,
-  //       "link": doc.data().link,
-  //     });
-  //   })
-  // )
+  async getData(page) {
+    const db = await firebaseInit()
+    let data = []
+    let querySnapshot
+    const settings = {/* your settings... */ timestampsInSnapshots: true };
+    db.settings(settings);
+    try {
+      let first = db.collection("posts").orderBy("published", "desc").limit(NUM_DATA)
+      if (page == 1)
+        querySnapshot = await first.get()
+      else {
+        querySnapshot = await first.get().then(function (documentSnapshots) {
+          // Get the last visible document
+          var lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - page];
+          console.log("last", lastVisible);
 
-  console.log(`Show data fetched. Count: ${data.length}`)
-  return {
-    posts: data
+          // Construct a new query starting at this document,
+          var next = db.collection("posts").orderBy("published", "desc").startAfter(lastVisible).limit(NUM_DATA)
+          return next.get();
+        });
+      }
+
+      let i = 0;
+      querySnapshot.forEach((doc) => {
+        // console.log(`${doc.id} => ${doc.data().published.toDate()}`);
+        data.push({
+          "post_index": i++,
+          "id": doc.id,
+          "title": doc.data().title,
+          "link": doc.data().link,
+          "author": doc.data().author,
+          "published": dateFormat(doc.data().published.toDate(), "mediumDate"),
+          "isLoading": false
+        });
+      })
+    } catch (e) {
+      console.log('something wrong ', e);
+    }
+
+    // console.log(`Show data fetched. Count: ${data.length}`)
+    this.setState({ posts: data })
+  }
+  async componentDidMount() {
+    await this.getData(this.props.page);
+  }
+
+  render() {
+    return (
+
+      <Base title="Technukrom">
+        <h1>Recent Posts</h1>
+
+        {this.state.posts.map((post) => (
+          <div class="card" key={post.link}>
+            <div class="card-content">
+              <div class="columns is-mobile">
+                <div class="column is-one-fifth">{post.published}</div>
+                <div class="column">
+                  <a href={post.link}>"{post.title}"</a> โดย {post.author}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Base>
+    )
+  }
+
+  // async getInitialProps(context) {
+  //   const page = context.query.page === undefined?1:context.query.page;
+  //   console.log("Tesge");
+  //   return { page: page };
+  // }
+
+  static async getInitialProps({ pathname, query }) {
+    // const feed = pathname === '/' ? '/news' : pathname
+    console.log(query.page);
+    const page = query.page === undefined ? 1 : query.page;
+    console.log(page);
+    return { page: page };
   }
 }
 
-export default Index
+export function createEmptyPosts() {
+  let posts = []
+  for (var i = 0; i < NUM_DATA; i++) {
+    posts.push({ "isLoading": true })
+  }
+  return posts
+}
+
