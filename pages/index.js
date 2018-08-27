@@ -2,7 +2,6 @@ import Base from '../components/layouts/Base'
 import firebaseInit from '../stores/firebaseInit'
 import dateFormat from 'dateformat';
 import React from 'react';
-// import AsyncPostItem from '../components/AsyncPostItem';
 import PostItem from '../components/PostItem';
 import Document from 'next/document'
 import Pagination from '../components/Pagination';
@@ -69,28 +68,15 @@ export default class Index extends Document {
 
       <Base title="Technukrom">
         <h1>Recent Posts</h1>
+        <Pagination page={this.props.page} />
 
         {this.state.posts.map((post) => (
-          <div class="card" key={post.link}>
-            <div class="card-content">
-              <div class="columns is-mobile">
-                <div class="column is-one-fifth">{post.published}</div>
-                <div class="column">
-                  <a href={post.link}>"{post.title}"</a> โดย {post.author}
-                </div>
-              </div>
-            </div>
-          </div>
+          <PostItem post={post} />
         ))}
+        <Pagination page={this.props.page} />
       </Base>
     )
   }
-
-  // async getInitialProps(context) {
-  //   const page = context.query.page === undefined?1:context.query.page;
-  //   console.log("Tesge");
-  //   return { page: page };
-  // }
 
   static async getInitialProps({ pathname, query }) {
     // const feed = pathname === '/' ? '/news' : pathname
