@@ -1,7 +1,7 @@
-import Layout from '../components/MyLayout.js'
+import Base from '../components/layouts/Base'
 
 export default () => (
-  <Layout>
-    <p>This is the about page</p>
-  </Layout>
+  <Base>
+    <p>Technology + สารานุกรม = Techนุกรม</p>
+  </Base>
 )

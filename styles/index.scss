@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+// Import a Google Font
+// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Set your brand colors
+$blue: #6200EE;
+// $pink: #FA7C91;
+// $brown: #757763;
+// $beige-light: #D0D1CD;
+// $beige-lighter: #EFF0EB;
+
+// // Update Bulma's global variables
+// $family-sans-serif: "Nunito", sans-serif;
+// $grey-dark: $brown;
+// $grey-light: $beige-light;
+$primary: $blue;
+// $link: $pink;
+// $widescreen-enabled: false;
+// $fullhd-enabled: false;
+
+// // Update some of Bulma's component variables
+// $body-background-color: $beige-lighter;
+// $control-border-width: 2px;
+// $input-border-color: transparent;
+// $input-shadow: none;
+
+// Import only what you need from Bulma
+@import 'bulma/sass/utilities/_all';
+@import 'bulma/sass/base/_all';
+@import "bulma/sass/grid/columns";
+// @import "bulma/sass/grid/tiles";
+@import "bulma/sass/layout/section";
+@import "bulma/sass/layout/footer";
+// @import "bulma/sass/layout/hero";
+
+// @import "bulma/sass/components/breadcrumb";
+@import "bulma/sass/components/card";
+// @import "bulma/sass/components/dropdown";
+// @import "bulma/sass/components/level";
+// @import "bulma/sass/components/media";
+// @import "bulma/sass/components/menu";
+// @import "bulma/sass/components/message";
+// @import "bulma/sass/components/modal";
+// @import "bulma/sass/components/navbar";
+// @import "bulma/sass/components/pagination";
+// @import "bulma/sass/components/panel";
+// @import "bulma/sass/components/tabs";
+
+@import "bulma/sass/elements/box";
+// @import "bulma/sass/elements/button";
+@import "bulma/sass/elements/container";
+@import "bulma/sass/elements/content";
+// @import "bulma/sass/elements/form";
+// @import "bulma/sass/elements/icon";
+@import "bulma/sass/elements/image";
+// @import "bulma/sass/elements/notification";
+// @import "bulma/sass/elements/progress";
+// @import "bulma/sass/elements/table";
+@import "bulma/sass/elements/tag";
+// @import "bulma/sass/elements/title";
+// @import "bulma/sass/elements/other";
+
+
+
+// @import "bulma/bulma";
+
+@import "./my_styles";
+// @import "./Trirong.css";
+

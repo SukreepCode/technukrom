@@ -1,0 +1,66 @@
+// preload 
+
+
+// header
+.hr-header{
+  margin-top: 0rem;
+}
+
+.user-link{
+  color: #4a4a4a;
+  margin: 8px;
+}
+
+.subtitle{
+  color: $grey-light;
+}
+
+.subtitle .description{
+  font-size: 2pt;
+}
+
+.post-list a, .title a {
+  color: $grey-dark;
+}
+
+.post-list a:hover, .title a:hover {
+  color: $blue;
+}
+
+  // header
+.menu-link a{
+  color: $grey-dark;  
+  margin-right:1rem;
+  line-height: 2.3;
+  text-transform: lowercase;
+}
+.active {
+  font-weight: bold;
+}
+.menu-link a:hover{
+  color: $blue;
+}
+
+.box{
+  box-shadow: none;
+  padding: .9rem;
+}
+
+.card{
+  margin: 0.5rem;
+}
+
+.card-content{
+ padding: 0.7rem;
+}
+
+body {
+  margin: 0;
+  padding: 15px;
+}
+
+h1,h2,h3, .title, .logo{
+  font-family: 'Trirong', sans-serif;
+  font-weight: 600;
+  // font-family: 'supermarket', Helvetica, Arial, sans-serif;
+}

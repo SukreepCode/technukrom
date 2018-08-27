@@ -1,18 +1,25 @@
-import Layout from '../components/MyLayout.js'
+import Base from '../components/layouts/Base'
 import Link from 'next/link'
 import firebaseInit from '../stores/firebaseInit'
+import dateFormat from 'dateformat';
 
 const Index = (props) => (
-  <Layout>
+  <Base title="Technukrom">
     <h1>Recent Posts</h1>
-    <ul>
-      {props.posts.map((post) => (
-        <li key={post.link}>
-          {post.published} » <Link href={post.link}><a>{post.title}</a></Link>
-        </li>
-      ))}
-    </ul>
-  </Layout>
+
+    {props.posts.map((post) => (
+      <div class="card" key={post.link}>
+        <div class="card-content">
+          <div class="columns is-mobile">
+            <div class="column is-one-fifth">{post.published}</div>
+            <div class="column">
+             <a href={post.link}>"{post.title}"</a> โดย {post.author}
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </Base>
 )
 
 Index.getInitialProps = async function () {
@@ -27,11 +34,12 @@ Index.getInitialProps = async function () {
   try {
     querySnapshot = await db.collection("posts").orderBy("published", "desc").limit(14).get();
     querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data().published.toDate()}`);
+      // console.log(`${doc.id} => ${doc.data().published.toDate()}`);
       data.push({
         "title": doc.data().title,
         "link": doc.data().link,
-        "published": doc.data().published.toDate().toDateString(),
+        "author": doc.data().author,
+        "published": dateFormat(doc.data().published.toDate(), "mediumDate")
       });
     })
   } catch (e) {

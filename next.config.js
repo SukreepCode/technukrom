@@ -2,8 +2,9 @@ const webpack = require("webpack");
 require('now-env'); // using now-env instead of `require("dotenv").config();`
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { ANALYZE } = process.env
+const withSass = require('@zeit/next-sass')
 
-module.exports = {
+module.exports = withSass({
   webpack: config => {
     // config.externals = [
     //   {
@@ -34,5 +35,10 @@ module.exports = {
       '/': { page: '/' },
       '/about': { page: '/about' }
     }
+  },
+  sassLoaderOptions: {
+    includePaths: ["./node_modules", "./styles"],
+    outputStyle: 'compressed'
   }
-};
+
+});
