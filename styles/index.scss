@@ -5,6 +5,7 @@
 
 // Set your brand colors
 $blue: #6200EE;
+$white: #fff;
 // $pink: #FA7C91;
 // $brown: #757763;
 // $beige-light: #D0D1CD;
@@ -24,6 +25,7 @@ $primary: $blue;
 // $control-border-width: 2px;
 // $input-border-color: transparent;
 // $input-shadow: none;
+$footer-background-color: $white;
 
 // Import only what you need from Bulma
 @import 'bulma/sass/utilities/_all';
