@@ -18,6 +18,7 @@ export default class Index extends Document {
       refQuery: null,
       isLoading: true,
     };
+    this.loadMore= this.loadMore.bind(this);
   }
 
   handleQuery(ref, isClear) {
@@ -102,7 +103,7 @@ export default class Index extends Document {
           <PostItem post={post} />
         ))}
         {/* <Pagination page={this.props.page} /> */}
-        <center><a class={`button is-primary ${this.state.isLoading ? "is-loading" : ""}`} onClick={this.loadMore.bind(this)}>Load more</a></center>
+        <center><a class={`button is-primary ${this.state.isLoading ? "is-loading" : ""}`} onClick={this.loadMore}>Load more</a></center>
       </Base>
     )
   }
