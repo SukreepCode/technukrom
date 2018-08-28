@@ -22,7 +22,7 @@ export default class Index extends Document {
     this.loadMore = this.loadMore.bind(this);
   }
 
-  handleQuery(ref, isClear, isPrefetch = false) {
+  handleQuery(ref, isFirstLoad, isPrefetch = false) {
     // Fetch query of given reference
     return new Promise((resolve, reject) => {
       ref.get().then((documentSnapshots) => {
@@ -34,7 +34,7 @@ export default class Index extends Document {
         };
 
         let i = 0;
-        if (isClear) this.setState({ posts: [] });
+        // if (isClear) this.setState({ posts: [] });
 
         var tmp_data = []
 
@@ -53,8 +53,15 @@ export default class Index extends Document {
 
         if (isPrefetch)
           this.setState({ prefetch_posts: tmp_data })
-        else 
-          this.setState({ posts: this.state.posts.concat(tmp_data) })
+        else {
+          if (isFirstLoad) {
+            for (var j = 0; j < NUM_DATA; j++) {
+              this.state.posts[j] = tmp_data[j];
+            }
+            // this.setState({ posts: this.state.posts.concat(tmp_data) })
+          } else
+            this.setState({ posts: this.state.posts.concat(tmp_data) })
+        }
 
         // Build a reference for next page
         const lastVisible = documentSnapshots.docs[documentSnapshots.size - 1];
