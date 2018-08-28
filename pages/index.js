@@ -14,14 +14,15 @@ export default class Index extends Document {
     super(props)
     this.state = {
       posts: this.createEmptyPosts(NUM_DATA),
+      prefetch_posts: null,
       refNext: null,
       refQuery: null,
       isLoading: true,
     };
-    this.loadMore= this.loadMore.bind(this);
+    this.loadMore = this.loadMore.bind(this);
   }
 
-  handleQuery(ref, isClear) {
+  handleQuery(ref, isClear, isPrefetch = false) {
     // Fetch query of given reference
     return new Promise((resolve, reject) => {
       ref.get().then((documentSnapshots) => {
@@ -35,9 +36,11 @@ export default class Index extends Document {
         let i = 0;
         if (isClear) this.setState({ posts: [] });
 
+        var tmp_data = []
+
         documentSnapshots.forEach((doc) => {
 
-          this.state.posts.push({
+          tmp_data.push({
             "post_index": i++,
             "id": doc.id,
             "title": doc.data().title,
@@ -47,6 +50,11 @@ export default class Index extends Document {
             "isLoading": false
           });
         });
+
+        if (isPrefetch)
+          this.setState({ prefetch_posts: tmp_data })
+        else 
+          this.setState({ posts: this.state.posts.concat(tmp_data) })
 
         // Build a reference for next page
         const lastVisible = documentSnapshots.docs[documentSnapshots.size - 1];
@@ -61,14 +69,24 @@ export default class Index extends Document {
 
   getData() {
     try {
-      if (this.state.refNext === null) {
-        // clear state.posts for loading animation
-        // Perform query from first query (first visible)
-        this.handleQuery(this.state.refQuery.limit(NUM_DATA), true);
+
+      if (this.state.prefetch_posts) {
+        // Restore prefecth page
+        this.setState({ posts: this.state.posts.concat(this.state.prefetch_posts) })
       } else {
-        // Perform query from last visible page
-        this.handleQuery(this.state.refNext.limit(NUM_DATA), false);
+        // No prefetch data, then get current page
+        if (this.state.refNext === null) {
+          // clear state.posts for loading animation
+          // Perform query from first query (first visible)
+          this.handleQuery(this.state.refQuery.limit(NUM_DATA), true);
+        } else {
+          // Perform query from last visible page
+          this.handleQuery(this.state.refNext.limit(NUM_DATA), false);
+        }
       }
+
+      // Finish? then, call prefetch
+      this.handleQuery(this.state.refNext.limit(NUM_DATA), false, true);
 
     } catch (e) {
       console.log('something wrong ', e);
