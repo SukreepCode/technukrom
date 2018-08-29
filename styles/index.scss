@@ -4,7 +4,7 @@
 // @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
 // Set your brand colors
-$blue: #6200EE;
+$blue: #0D47A1;
 $white: #fff;
 // $pink: #FA7C91;
 // $brown: #757763;
@@ -25,6 +25,16 @@ $primary: $blue;
 // $control-border-width: 2px;
 // $input-border-color: transparent;
 // $input-shadow: none;
+$navbar-background-color: $blue;
+$navbar-height: 3.6rem;
+$navbar-item-color: $white;
+$navbar-item-img-max-height: 1.9rem;
+$navbar-burger-color: $navbar-item-color;
+// $navbar-item-hover-color: $white;
+// $navbar-tab-active-color: $white;
+// $navbar-dropdown-arrow: $white;
+// $navbar-dropdown-item-active-color: $white;
+
 $footer-background-color: $white;
 
 // Import only what you need from Bulma
@@ -38,13 +48,13 @@ $footer-background-color: $white;
 
 // @import "bulma/sass/components/breadcrumb";
 @import "bulma/sass/components/card";
-// @import "bulma/sass/components/dropdown";
+@import "bulma/sass/components/dropdown";
 // @import "bulma/sass/components/level";
 // @import "bulma/sass/components/media";
-// @import "bulma/sass/components/menu";
+@import "bulma/sass/components/menu";
 // @import "bulma/sass/components/message";
 // @import "bulma/sass/components/modal";
-// @import "bulma/sass/components/navbar";
+@import "bulma/sass/components/navbar";
 // @import "bulma/sass/components/pagination";
 // @import "bulma/sass/components/panel";
 // @import "bulma/sass/components/tabs";
@@ -53,7 +63,7 @@ $footer-background-color: $white;
 @import "bulma/sass/elements/button";
 @import "bulma/sass/elements/container";
 @import "bulma/sass/elements/content";
-// @import "bulma/sass/elements/form";
+@import "bulma/sass/elements/form";
 // @import "bulma/sass/elements/icon";
 @import "bulma/sass/elements/image";
 // @import "bulma/sass/elements/notification";
@@ -69,5 +79,6 @@ $footer-background-color: $white;
 
 @import "./my_styles";
 // @import "./Trirong.css";
+
 
 @import "placeholder-loading/src/scss/placeholder-loading";

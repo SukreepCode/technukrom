@@ -3,7 +3,7 @@ import Document, { Head, Main, NextScript } from 'next/document'
 export default class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <html class="has-navbar-fixed-top">
         <Head>
         <link rel="stylesheet" type='text/css' href="/_next/static/style.css" />
           <link rel='stylesheet' type='text/css' href='/static/css/nprogress.css' />

@@ -123,12 +123,11 @@ export default class Index extends Document {
     return (
 
       <Base title="Technukrom">
-        <h1>Recent Posts</h1>
         {this.state.posts.map((post) => (
           <PostItem post={post} />
         ))}
         {/* <Pagination page={this.props.page} /> */}
-        <center><a class={`button is-primary ${this.state.isLoading ? "is-loading" : ""}`} onClick={this.loadMore}>Load more</a></center>
+        <center><a class={`button is-primary ${this.state.isLoading ? "is-loading" : ""}`} onClick={this.loadMore}>ดูเพิ่มเติม</a></center>
       </Base>
     )
   }

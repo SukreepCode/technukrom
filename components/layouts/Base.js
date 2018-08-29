@@ -5,7 +5,7 @@ import Footer from './Footer';
 const Base = (props) =>
   <div>
     <Head>
-      <title>{`${props.title}`}</title>
+      <title>{`${props.title} | Techนุกรม`}</title>
     </Head>
 
     <Header path={props.path} />
