@@ -68,6 +68,9 @@ export default class Header extends React.Component {
                 <FaGithub size="1.2rem" />
               </a>
 
+              <a href="https://github.com/TechNukrom/data-crawler/issues/2" className="navbar-item is-hidden-touch is-hidden-desktop-only">
+              เพิ่มแหล่งที่มา
+              </a>
 
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
@@ -75,6 +78,9 @@ export default class Header extends React.Component {
                 </a>
 
                 <div class="navbar-dropdown">
+                  <a href="https://github.com/TechNukrom/data-crawler/issues/2" className="navbar-item is-hidden-desktop">
+                    เพิ่มแหล่งที่มา
+                  </a>
                   <Link href="/contribution">
                     <a className="navbar-item">
                       ช่วยพัฒนา
