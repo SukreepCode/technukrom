@@ -6,11 +6,6 @@ const withSass = require('@zeit/next-sass')
 
 module.exports = withSass({
   webpack: config => {
-    // config.externals = [
-    //   {
-    //     xmlhttprequest: 'XMLHttpRequest'
-    //   }
-    // ];
 
     if (ANALYZE) {
       config.plugins.push(new BundleAnalyzerPlugin({
@@ -29,12 +24,6 @@ module.exports = withSass({
       })
     );
     return config;
-  },
-  exportPathMap: function () {
-    return {
-      '/': { page: '/' },
-      '/about': { page: '/about' }
-    }
   },
   sassLoaderOptions: {
     includePaths: ["./node_modules", "./styles"],
