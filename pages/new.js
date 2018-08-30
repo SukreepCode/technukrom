@@ -3,11 +3,10 @@ import firebaseInit from '../stores/firebaseInit'
 import dateFormat from 'dateformat';
 import React from 'react';
 import PostItem from '../components/PostItem';
-import Document from 'next/document'
 
 const NUM_DATA = 20;
 
-export default class New extends Document {
+export default class New extends React.Component {
 
   constructor(props) {
     super(props)
@@ -118,7 +117,6 @@ export default class New extends Document {
   render() {
 
     return (
-
       <Base title="Technukrom">
         {this.state.posts.map((post) => (
           <PostItem post={post} />

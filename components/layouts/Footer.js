@@ -1,7 +1,6 @@
 const Footer = (props) =>
   <footer class="footer">
     <div class="content has-text-centered is-size-6">
-      {/* <div>Copyright © 2018 by TechNukrom</div> */}
       ทำด้วย {' '}
       <span role="img" aria-label="love">
         ❤️
