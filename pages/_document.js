@@ -4,13 +4,19 @@ const theme_color = "#0D47A1";
 const description = "Techนุกรม = ศูนย์กลางความรู้สำหรับนักพัฒนา ( developer) โดยที่เน้นภาษาไทยเป็นหลัก"
 
 export default class MyDocument extends Document {
+
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx)
+    return { ...initialProps }
+  }
+
   render() {
     return (
       <html class="has-navbar-fixed-top" >
       <Head>
         <link rel="stylesheet" type='text/css' href="/_next/static/style.css" />
         <link rel='stylesheet' type='text/css' href='/static/css/nprogress.css' />
-        <link rel='stylesheet' type='text/css' href='/static/css/Trirong.css' />
+        {/* <link rel='stylesheet' type='text/css' href='/static/css/Trirong.css' /> */}
 
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
