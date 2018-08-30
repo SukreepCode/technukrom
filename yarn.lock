@@ -3649,6 +3649,13 @@ neo-async@^2.5.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.1.tgz#acb909e327b1e87ec9ef15f41b8a269512ad41ee"
 
+next-ga@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/next-ga/-/next-ga-2.3.1.tgz#a3c26fad0aeb73e1db978c37f6eb93586a0836bd"
+  dependencies:
+    debug "^3.1.0"
+    react-ga "^2.5.3"
+
 next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
@@ -4663,6 +4670,13 @@ react-fade-in@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/react-fade-in/-/react-fade-in-0.1.6.tgz#59efdd54c3ddc7b1dbe0c7a2993f4efe4af4049f"
 
+react-ga@^2.5.3:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.3.tgz#0f447c73664c069a5fc341f6f431262e3d4c23c4"
+  optionalDependencies:
+    prop-types "^15.6.0"
+    react "^15.6.2 || ^16.0"
+
 react-icons@^3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.0.5.tgz#9f22a319a48b562e052af2255a3dda8ded363d1c"
@@ -4670,6 +4684,15 @@ react-icons@^3.0.5:
 react-lifecycles-compat@3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+"react@^15.6.2 || ^16.0":
+  version "16.4.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.2.tgz#2cd90154e3a9d9dd8da2991149fdca3c260e129f"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 react@^16.4.1:
   version "16.4.1"
