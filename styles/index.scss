@@ -6,35 +6,22 @@
 // Set your brand colors
 $blue: #0D47A1;
 $white: #fff;
-// $pink: #FA7C91;
-// $brown: #757763;
-// $beige-light: #D0D1CD;
-// $beige-lighter: #EFF0EB;
+$black: #222;
+$pink: #FA7C91;
+$brown: #757763;
+// // $beige-light: #D0D1CD;
+// // $beige-lighter: #EFF0EB;
 
-// // Update Bulma's global variables
-// $family-sans-serif: "Nunito", sans-serif;
-// $grey-dark: $brown;
-// $grey-light: $beige-light;
+// // // Update Bulma's global variables
+// // $family-sans-serif: "Nunito", sans-serif;
+// // $grey-dark: $brown;
+// // $grey-light: $beige-light;
 $primary: $blue;
-// $link: $pink;
-// $widescreen-enabled: false;
+$link: $blue;
+$widescreen-enabled: false;
 // $fullhd-enabled: false;
 
 // // Update some of Bulma's component variables
-// $body-background-color: $beige-lighter;
-// $control-border-width: 2px;
-// $input-border-color: transparent;
-// $input-shadow: none;
-$navbar-background-color: $blue;
-$navbar-height: 3.6rem;
-$navbar-item-color: $white;
-$navbar-item-img-max-height: 1.9rem;
-$navbar-burger-color: $navbar-item-color;
-// $navbar-item-hover-color: $white;
-// $navbar-tab-active-color: $white;
-// $navbar-dropdown-arrow: $white;
-// $navbar-dropdown-item-active-color: $white;
-
 $footer-background-color: $white;
 
 // Import only what you need from Bulma
@@ -63,7 +50,7 @@ $footer-background-color: $white;
 @import "bulma/sass/elements/button";
 @import "bulma/sass/elements/container";
 @import "bulma/sass/elements/content";
-@import "bulma/sass/elements/form";
+// @import "bulma/sass/elements/form";
 // @import "bulma/sass/elements/icon";
 @import "bulma/sass/elements/image";
 // @import "bulma/sass/elements/notification";
