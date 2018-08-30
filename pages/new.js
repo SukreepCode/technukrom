@@ -48,6 +48,7 @@ export default class New extends Document {
             "author": doc.data().author,
             "published": dateFormat(doc.data().published.toDate(), "mediumDate"),
             "isLoading": false,
+            "tags": doc.data().tags === undefined?[]:doc.data().tags
           });
         });
 
@@ -142,7 +143,7 @@ export default class New extends Document {
   createEmptyPosts(numData) {
     let posts = []
     for (var i = 0; i < numData; i++) {
-      posts.push({ "isLoading": true })
+      posts.push({ "isLoading": true , tags:[]})
     }
     return posts
   }
