@@ -86,6 +86,11 @@ export default class Header extends React.Component {
                       ช่วยพัฒนา
                     </a>
                   </Link>
+                  <Link href="/roadmap">
+                    <a className="navbar-item">
+                      Road Map
+                    </a>
+                  </Link>
                   <Link href="/about">
                     <a className="navbar-item">
                       เกี่ยวกับเรา
