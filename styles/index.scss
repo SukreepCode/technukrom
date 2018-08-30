@@ -1,25 +1,13 @@
 @charset "utf-8";
 
-// Import a Google Font
-// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
-
 // Set your brand colors
 $blue: #0D47A1;
 $white: #fff;
-$black: #222;
-$pink: #FA7C91;
-$brown: #757763;
-// // $beige-light: #D0D1CD;
-// // $beige-lighter: #EFF0EB;
 
-// // // Update Bulma's global variables
-// // $family-sans-serif: "Nunito", sans-serif;
-// // $grey-dark: $brown;
-// // $grey-light: $beige-light;
+// Update Bulma's global variables
 $primary: $blue;
 $link: $blue;
 $widescreen-enabled: false;
-// $fullhd-enabled: false;
 
 // // Update some of Bulma's component variables
 $footer-background-color: $white;
@@ -61,11 +49,9 @@ $footer-background-color: $white;
 // @import "bulma/sass/elements/other";
 
 
-
 // @import "bulma/bulma";
 
 @import "./my_styles";
 // @import "./Trirong.css";
-
 
 @import "placeholder-loading/src/scss/placeholder-loading";

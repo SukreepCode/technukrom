@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch, FaGithub } from 'react-icons/fa'
 import React from 'react'
-import { FaGithub } from 'react-icons/fa';
 
 
 export default class Header extends React.Component {

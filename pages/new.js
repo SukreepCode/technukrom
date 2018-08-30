@@ -4,7 +4,6 @@ import dateFormat from 'dateformat';
 import React from 'react';
 import PostItem from '../components/PostItem';
 import Document from 'next/document'
-// import Pagination from '../components/Pagination';
 
 const NUM_DATA = 20;
 
@@ -34,7 +33,6 @@ export default class New extends Document {
         };
 
         let i = 0;
-        // if (isClear) this.setState({ posts: [] });
 
         var tmp_data = []
 
@@ -57,12 +55,10 @@ export default class New extends Document {
         if (isPrefetch)
           this.setState({ prefetch_posts: tmp_data })
         else {
-          if (isFirstLoad) {
-            for (var j = 0; j < NUM_DATA; j++) {
+          if (isFirstLoad)
+            for (var j = 0; j < NUM_DATA; j++)
               this.state.posts[j] = tmp_data[j];
-            }
-            // this.setState({ posts: this.state.posts.concat(tmp_data) })
-          } else
+          else
             this.setState({ posts: this.state.posts.concat(tmp_data) })
         }
 
@@ -86,7 +82,6 @@ export default class New extends Document {
       } else {
         // No prefetch data, then get current page
         if (this.state.refNext === null) {
-          // clear state.posts for loading animation
           // Perform query from first query (first visible)
           this.handleQuery(this.state.refQuery.limit(NUM_DATA), true);
         } else {
@@ -105,7 +100,7 @@ export default class New extends Document {
 
   async initQuery() {
     const db = await firebaseInit()
-    const settings = {/* your settings... */ timestampsInSnapshots: true };
+    const settings = {timestampsInSnapshots: true };
     db.settings(settings);
     this.setState({ refQuery: db.collection("posts").orderBy("published", "desc") });
   }
@@ -118,7 +113,6 @@ export default class New extends Document {
   async loadMore() {
     this.setState({ isLoading: true });
     this.getData();
-    // e.preventDefault();
   }
 
   render() {
@@ -129,15 +123,9 @@ export default class New extends Document {
         {this.state.posts.map((post) => (
           <PostItem post={post} />
         ))}
-        {/* <Pagination page={this.props.page} /> */}
         <center><a class={`button is-primary ${this.state.isLoading ? "is-loading" : ""}`} onClick={this.loadMore}>ดูเพิ่มเติม</a></center>
       </Base>
     )
-  }
-
-  static async getInitialProps({ pathname, query }) {
-    const page = query.page === undefined ? 1 : query.page;
-    return { page: page };
   }
 
   createEmptyPosts(numData) {
