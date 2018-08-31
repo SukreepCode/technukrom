@@ -14,6 +14,10 @@ const New = () => (
     <InfinitePostList 
       refInitQuery={initQuery()} 
       numData={30}
+      showPlaceholder
+      isAutoload
+      onRef={ref => (this.child = ref)
+      }
       />
   </Base>
 )

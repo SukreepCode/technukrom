@@ -22,6 +22,8 @@ const handleQuery = (ref) => {
         });
       });
 
+      console.log(tmp_data);
+
       // Build a reference for next page
       const lastVisible = documentSnapshots.docs[documentSnapshots.size - 1];
       if (!lastVisible) return;
@@ -47,6 +49,9 @@ const getData = async (num_data, refNext, refInitQuery) => {
       // Perform query from last visible page
       currentData = handleQuery(refNext.limit(num_data));
     }
+
+    console.log(currentData);
+    // throw Error('Query error', e);
 
     return currentData;
 

@@ -64,7 +64,7 @@ export default class Header extends React.Component {
               </Link>
 
 
-              <a href="https://github.com/TechNukrom/" className="navbar-item is-hidden-touch is-hidden-desktop-only">
+              <a href="https://github.com/TechNukrom/technukrom" className="navbar-item is-hidden-touch is-hidden-desktop-only">
                 <FaGithub size="1.2rem" />
               </a>
 

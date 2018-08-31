@@ -12,28 +12,39 @@ export default class extends React.Component {
     }
     return posts
   }
+
   constructor(props) {
     super(props)
     this.state = {
-      posts: this.createEmptyPosts(this.props.numData),
+      posts: this.props.showPlaceholder ? this.createEmptyPosts(this.props.numData) : [],
       prefetch_posts: null,
       refNext: null,
       refQuery: null,
       isLoading: true,
+      reset: () => this.setState({refNext: null, posts: [] })
     };
 
     this.load = this.load.bind(this);
   }
 
   manageData(data, isFirstLoad, isPrefetch = false) {
+    console.log(`manageData `)
+    console.log(data)
     try {
       if (isPrefetch)
         this.setState({ prefetch_posts: data })
       else {
-        if (isFirstLoad)
-          for (var j = 0; j < this.props.numData; j++)
-            this.state.posts[j] = data[j];
-        else
+        if (isFirstLoad) {
+          console.log(`${this.state.posts.length} >>> `)
+
+          if (this.props.showPlaceholder && data.length >= this.props.numData) {
+            for (var j = 0; j < this.state.posts.length; j++)
+              this.state.posts[j] = data[j];
+          } else
+            this.setState({ posts: data })
+
+
+        } else
           this.setState({ posts: this.state.posts.concat(data) })
       }
     } catch (ex) {
@@ -52,11 +63,15 @@ export default class extends React.Component {
         this.setState({ isLoading: false });
       } else {
         const incoming = await loadData(this.props.numData, this.state.refNext, ...args);
-        this.manageData(incoming.data, isFirstLoad);
+        if (incoming.data !== undefined)
+          this.manageData(incoming.data, isFirstLoad);
+        else
+          throw Error("incoming.data is undefined")
+        console.log(`Length data: ${incoming.data.length}`)
         this.setState({ isLoading: false, refNext: incoming.refNext });
 
         // Prefetch
-        if(this.props.prefetch){
+        if (this.props.prefetch) {
           console.log("Enable prefetch data")
           const prefetch = await loadData(this.props.numData, this.state.refNext, ...args);
           this.manageData(prefetch.data, isFirstLoad, true);
