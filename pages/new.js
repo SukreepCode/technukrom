@@ -13,7 +13,7 @@ const New = () => (
   <Base title="Technukrom">
     <InfinitePostList 
       refInitQuery={initQuery()} 
-      numData={20}
+      numData={30}
       />
   </Base>
 )

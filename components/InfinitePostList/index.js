@@ -27,10 +27,6 @@ export default class extends React.Component {
 
   manageData(data, isFirstLoad, isPrefetch = false) {
     try {
-      console.log(data);
-      console.log(isFirstLoad);
-      console.log(isPrefetch);
-      console.log("append");
       if (isPrefetch)
         this.setState({ prefetch_posts: data })
       else {
@@ -60,9 +56,12 @@ export default class extends React.Component {
         this.setState({ isLoading: false, refNext: incoming.refNext });
 
         // Prefetch
-        const prefetch = await loadData(this.props.numData, this.state.refNext, ...args);
-        this.manageData(prefetch.data, isFirstLoad, true);
-        this.setState({ isLoading: false, refNext: prefetch.refNext });
+        if(this.props.prefetch){
+          console.log("Enable prefetch data")
+          const prefetch = await loadData(this.props.numData, this.state.refNext, ...args);
+          this.manageData(prefetch.data, isFirstLoad, true);
+          this.setState({ isLoading: false, refNext: prefetch.refNext });
+        }
       }
 
     } catch (ex) {
