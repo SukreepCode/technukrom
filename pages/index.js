@@ -1,7 +1,7 @@
-
 import New from './new'
 
-export default () => (
+const Index = () => (
   <New />
 )
 
+export default Index
