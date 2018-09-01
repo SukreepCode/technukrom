@@ -25,13 +25,16 @@ const handleQuery = (ref) => {
       // Build a reference for next page
       const lastVisible = documentSnapshots.docs[documentSnapshots.size - 1];
       if (!lastVisible) return;
-
       resolve({
         data: tmp_data,
         refNext: ref.startAfter(lastVisible)
       });
 
     })
+    .catch(function (err) {
+      reject(err);
+      throw Error('Query error', err );
+    });
   })
 }
 

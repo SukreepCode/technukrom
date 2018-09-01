@@ -15,11 +15,12 @@ export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      posts: this.createEmptyPosts(this.props.numData),
+      posts: this.props.refInitQuery != undefined?this.createEmptyPosts(this.props.numData):[],
       prefetch_posts: null,
       refNext: null,
       refQuery: null,
       isLoading: true,
+      errorMsg: null
     };
 
     this.load = this.load.bind(this);
@@ -65,8 +66,8 @@ export default class extends React.Component {
       }
 
     } catch (ex) {
-      console.log(ex);
-      this.setState({ isLoading: false, error: true });
+      console.log(`Error msg: `,ex);
+      this.setState({ isLoading: false, error: true, errorMsg: ex});
     }
   }
 

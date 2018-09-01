@@ -33,7 +33,7 @@ export default class Header extends React.Component {
             </Link>
 
 
-            <Link href="/contribution">
+            <Link prefetch href="/search">
               <a className="navbar-item is-hidden-desktop">
                 <FaSearch size="1.2rem" />
               </a>
@@ -57,7 +57,7 @@ export default class Header extends React.Component {
             </div>
 
             <div className="navbar-end">
-              <Link href="/contribution">
+              <Link prefetch href="/search">
                 <a className="navbar-item is-hidden-touch is-hidden-desktop-only">
                   <FaSearch size="1.2rem" />
                 </a>
@@ -81,7 +81,7 @@ export default class Header extends React.Component {
                   <a href="https://github.com/TechNukrom/data-crawler/issues/2" className="navbar-item is-hidden-desktop">
                     เพิ่มแหล่งที่มา
                   </a>
-                  <Link href="/contribution">
+                  <Link prefetch href="/contribution">
                     <a className="navbar-item">
                       ช่วยพัฒนา
                     </a>

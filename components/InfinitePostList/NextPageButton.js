@@ -14,9 +14,10 @@ export default class extends React.Component {
   componentDidMount() {
     const { onLoad, isLoading, refInitQuery} = this.props;
     this.setState({ isLoading: isLoading });
-    refInitQuery.then( (value) => {
-      onLoad(value);
-    })
+    if(refInitQuery != undefined)
+      refInitQuery.then( (value) => {
+        onLoad(value);
+      })
   }
 
   render() {

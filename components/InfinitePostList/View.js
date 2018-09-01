@@ -1,13 +1,16 @@
 import React from 'react';
 import PostList from './PostList';
 import NextPageButton from './NextPageButton';
+import Error from './Error';
 
 const View = ({ 
-  isLoading, posts, onLoad, refInitQuery
+  isLoading, posts, onLoad, refInitQuery, error, errorMsg
 }) => (
   <div>
-      <PostList posts={posts} />
-      <NextPageButton refInitQuery={refInitQuery} isLoading={isLoading} onLoad={onLoad}/>
+      { !error && <PostList posts={posts} /> }
+      { error && <Error /> }
+      { refInitQuery && 
+        <NextPageButton refInitQuery={refInitQuery} isLoading={isLoading} onLoad={onLoad}/>}
   </div>
 );
 
