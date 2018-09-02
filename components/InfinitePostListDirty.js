@@ -1,5 +1,5 @@
 import Base from './layouts/Base'
-import firebaseInit from '../stores/firebaseInit'
+import { firestore } from '../stores/firebaseInit'
 import dateFormat from 'dateformat';
 import React from 'react';
 import PostItem from './archived/PostItem';
@@ -98,10 +98,9 @@ export default class extends React.Component {
   }
 
   async initQuery() {
-    const db = await firebaseInit()
     const settings = { timestampsInSnapshots: true };
-    db.settings(settings);
-    this.setState({ refQuery: db.collection("posts").orderBy("published", "desc") });
+    firestore.settings(settings);
+    this.setState({ refQuery: firestore.collection("posts").orderBy("published", "desc") });
   }
 
   async componentDidMount() {

@@ -1,35 +1,25 @@
-/* eslint-disable import/first */
+// https://github.com/jeescu/react-firebase/blob/master/src/firebase.js
+import firebase from 'firebase';
 
-// function isNode() {
-//   return (
-//     typeof process !== "undefined" &&
-//     process.release &&
-//     process.release.name === "node"
-//   );
-// }
+const config = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  databaseURL: 'https://technukrom.firebaseio.com'
+};
 
-// if (isNode()) {
-//   global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-// }
-
-export default async () => {
-  // const firebase = require('firebase')
-
-  const firebase_app = await import("@firebase/app");
-  const firebase = firebase_app.default;
-  const firestore = await import("@firebase/firestore");
-
-  try {
-    firebase.initializeApp({
-      apiKey: process.env.FIREBASE_API_KEY,
-      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-      projectId: process.env.FIREBASE_PROJECT_ID
-    });
-  } catch (err) {
-    if (!/already exists/.test(err.message)) {
-      console.error("Firebase initialization error", err.stack);
-    }
-  }
-
-  return firebase.firestore();
+// fixed this https://github.com/zeit/next.js/issues/1999#issuecomment-302244429
+if (!firebase.apps.length) {
+  firebase.initializeApp(config) ;
 }
+
+export default firebase;
+
+export const database = firebase.database();
+export const firestore = firebase.firestore();
+// export const auth = firebase.auth();
+// export const storage = firebase.storage();
+// export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+// export const messaging = firebase.messaging();
+
+// usage import { database, firestore } from '../stores/firebaseInit'

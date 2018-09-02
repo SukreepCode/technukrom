@@ -1,15 +1,14 @@
 import InfinitePostList from '../components/InfinitePostList'
-import firebaseInit from '../stores/firebaseInit'
+import { firestore } from '../stores/firebaseInit'
 import Base from '../components/layouts/Base'
 import { withRouter } from 'next/router'
 import UnderConstruction from '../components/layouts/UnderContruction'
 import Message from '../components/layouts/Message';
 
 const initQuery = async (keyword) => {
-  const db = await firebaseInit()
   const settings = { timestampsInSnapshots: true };
-  db.settings(settings);
-  return db.collection("posts")
+  firestore.settings(settings);
+  return firestore.collection("posts")
     .where("generated_tags", "array-contains", keyword)
     .orderBy("published", "desc");
 }

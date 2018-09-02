@@ -1,20 +1,27 @@
 import InfinitePostList from '../components/InfinitePostList';
-import firebaseInit from '../stores/firebaseInit'
+import { firestore } from '../stores/firebaseInit'
+
 import Base from '../components/layouts/Base'
+import Stat from '../components/layouts/Stat';
+import PopularTags from '../components/layouts/PopularTags';
+
+const NUM_POSTS = 5
 
 const initQuery = async () => {
-  const db = await firebaseInit()
   const settings = { timestampsInSnapshots: true };
-  db.settings(settings);
-  return db.collection("posts").orderBy("published", "desc");
+  firestore.settings(settings);
+  return firestore.collection("posts").orderBy("published", "desc");
 }
 
 const Index = () => (
   <Base title="Technukrom">
+    <PopularTags /> 
+    <h3>{NUM_POSTS} โพสล่าสุด</h3>
     <InfinitePostList 
       refInitQuery={initQuery()} 
-      numData={5}
+      numData={NUM_POSTS}
       />
+      <Stat />
   </Base>
 )
 
