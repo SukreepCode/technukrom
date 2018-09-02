@@ -21,7 +21,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { isLoading } = this.props;
-    return <center><a className={`button is-primary ${isLoading ? "is-loading" : ""}`} onClick={this.loadMore}>ดูเพิ่มเติม</a></center>
+    const { isLoading, pageEnding } = this.props;
+  return <center>{!pageEnding && <a className={`button is-primary ${isLoading ? "is-loading" : ""}`} onClick={this.loadMore}>ดูเพิ่มเติม</a>} </center>
   }
 }

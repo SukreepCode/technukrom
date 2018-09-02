@@ -13,7 +13,7 @@ export default (props) => (
       <div className="card card-error">
       <div className="card-content ">
         <h3>มีบางอย่างไม่ปกติจ้า</h3>
-        <p>เปิดดูที่ console เลยจ้า น่าจะถูกล็อกที่ Firebase free quotas ต่อวัน </p>
+        <p>เปิดดูที่ console เลยจ้า มีโอกาสถูกล็อกที่ Firebase free quotas ต่อวัน T_T</p>
         <p><a href="https://firebase.google.com/docs/firestore/quotas#free-quota">อ่านเพิ่มเติมได้เลยจ้า</a></p>
       </div>
     </div>

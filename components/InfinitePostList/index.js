@@ -15,12 +15,13 @@ export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      posts: this.props.refInitQuery != undefined?this.createEmptyPosts(this.props.numData):[],
+      posts: this.props.refInitQuery != undefined?this.createEmptyPosts(this.props.numData):this.createEmptyPosts(1),
       prefetch_posts: null,
       refNext: null,
       refQuery: null,
       isLoading: true,
-      errorMsg: null
+      errorMsg: null,
+      pageEnding: false
     };
 
     this.load = this.load.bind(this);
@@ -31,14 +32,20 @@ export default class extends React.Component {
       if (isPrefetch)
         this.setState({ prefetch_posts: data })
       else {
-        if (isFirstLoad)
-          for (var j = 0; j < this.props.numData; j++)
-            this.state.posts[j] = data[j];
-        else
+        if (isFirstLoad) {
+          //// console.log(`${this.state.posts.length} >>> `)
+
+          if (data.length >= this.props.numData) {
+            for (var j = 0; j < this.state.posts.length; j++)
+              this.state.posts[j] = data[j];
+          } else
+            this.setState({ posts: data })
+
+        } else
           this.setState({ posts: this.state.posts.concat(data) })
       }
     } catch (ex) {
-      console.log(ex);
+      // console.log(ex);
       this.setState({ isLoading: false, error: true });
     }
   }
@@ -53,12 +60,20 @@ export default class extends React.Component {
         this.setState({ isLoading: false });
       } else {
         const incoming = await loadData(this.props.numData, this.state.refNext, ...args);
-        this.manageData(incoming.data, isFirstLoad);
-        this.setState({ isLoading: false, refNext: incoming.refNext });
+        // console.log("incoming: ", incoming)
+        if (incoming.pageEnding == true){
+          this.setState({pageEnding: true})
+        }
 
+        this.manageData(incoming.data, isFirstLoad);
+        // console.log("Loaded:",incoming.data);
+        // console.log("zie:",this.state.posts.length);
+        this.setState({ isLoading: false, refNext: incoming.refNext });
+        // console.log("next: ", incoming.refNext)
+        
         // Prefetch
         if(this.props.prefetch){
-          console.log("Enable prefetch data")
+          // console.log("Enable prefetch data")
           const prefetch = await loadData(this.props.numData, this.state.refNext, ...args);
           this.manageData(prefetch.data, isFirstLoad, true);
           this.setState({ isLoading: false, refNext: prefetch.refNext });
@@ -66,7 +81,7 @@ export default class extends React.Component {
       }
 
     } catch (ex) {
-      console.log(`Error msg: `,ex);
+      // console.log(`Error msg: `,ex);
       this.setState({ isLoading: false, error: true, errorMsg: ex});
     }
   }

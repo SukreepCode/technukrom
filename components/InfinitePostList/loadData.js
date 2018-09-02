@@ -1,10 +1,11 @@
 import dateFormat from 'dateformat';
-import firebaseInit from '../../stores/firebaseInit'
 
-const handleQuery = (ref) => {
+const handleQuery = (ref, numData) => {
   // Fetch query of given reference
   return new Promise((resolve, reject) => {
-    ref.get().then((documentSnapshots) => {
+    ref.limit(numData).get().then((documentSnapshots) => {
+
+
 
       let i = 0;
       var tmp_data = []
@@ -24,17 +25,25 @@ const handleQuery = (ref) => {
 
       // Build a reference for next page
       const lastVisible = documentSnapshots.docs[documentSnapshots.size - 1];
-      if (!lastVisible) return;
+      // console.log("lastVisible", lastVisible)
+
+
+      const pageEnding = documentSnapshots.size < numData ? true : false;
+      const isNotFound = !lastVisible ? true : false;
+      const refNext = isNotFound ? null : ref.startAfter(lastVisible)
+
       resolve({
         data: tmp_data,
-        refNext: ref.startAfter(lastVisible)
+        refNext: refNext,
+        pageEnding: pageEnding,
+        isNotFound: isNotFound
       });
 
     })
-    .catch(function (err) {
-      reject(err);
-      throw Error('Query error', err );
-    });
+      .catch(function (err) {
+        reject(err);
+        throw Error('Query error', err);
+      });
   })
 }
 
@@ -45,10 +54,10 @@ const getData = async (num_data, refNext, refInitQuery) => {
     // No prefetch data, then get current page
     if (refNext === null) {
       // Perform query from first query (first visible)
-      currentData = handleQuery(refInitQuery.limit(num_data));
+      currentData = handleQuery(refInitQuery, num_data);
     } else {
       // Perform query from last visible page
-      currentData = handleQuery(refNext.limit(num_data));
+      currentData = handleQuery(refNext, num_data);
     }
 
     return currentData;
