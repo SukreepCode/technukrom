@@ -1,7 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 
 const theme_color = "#0D47A1";
-const description = "Techนุกรม = ศูนย์กลางความรู้สำหรับนักพัฒนา ( developer) โดยที่เน้นภาษาไทยเป็นหลัก"
+const description = "Techนุกรม = ศูนย์กลางความรู้สำหรับนักพัฒนา ( developer) โดยที่เน้นภาษาไทยเป็นหลัก โดยรวบรวมแหล่งความรู้ บทความที่เป็นภาษาไทยให้อยู่ที่เดียวกัน แต่จัดหมวดหมู่ไว้เพื่อให้ง่ายต่อการค้นหาและศึกษาเพิ่มเติมในกลุ่มคนที่เกี่ยวข้องกับวงการไอที"
 
 export default class MyDocument extends Document {
 

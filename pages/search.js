@@ -2,7 +2,6 @@ import InfinitePostList from '../components/InfinitePostList'
 import { firestore } from '../stores/firebaseInit'
 import Base from '../components/layouts/Base'
 import { withRouter } from 'next/router'
-import UnderConstruction from '../components/layouts/UnderContruction'
 import Message from '../components/layouts/Message';
 
 const initQuery = async (keyword) => {

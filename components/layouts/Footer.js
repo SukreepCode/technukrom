@@ -1,6 +1,6 @@
 const Footer = (props) =>
   <footer class="footer">
-    <div class="content has-text-centered is-size-6">
+    <div class="content has-text-centered is-size-7">
       ทำด้วย {' '}
       <span role="img" aria-label="love">
         ❤️
@@ -12,6 +12,8 @@ const Footer = (props) =>
           ✨
         </span>
       </a>
+      <br/>
+      Open source @ <a href="https://github.com/TechNukrom/">github</a>
     </div>
   </footer>
 

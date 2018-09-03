@@ -8,7 +8,7 @@ export default (props) => (
       left={props.post.published} 
       tags={props.post.tags}
       right={`<div class="is-size-7">${props.post.author}</div>
-      <div class="has-text-weight-bold">
+      <div class="post-title">
         <a target="_blank" href="/r/${encodeURIComponent(props.post.link)}">${props.post.title}</a>
       </div>`}
       isLoading={props.post.isLoading}

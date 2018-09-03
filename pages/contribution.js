@@ -1,29 +1,22 @@
 import Base from '../components/layouts/Base'
+import Link from 'next/link'
 export default () => (
-  <Base title="เกี่ยวกับเรา">
-    <h1>ยังไม่มีความสามารถแบบที่หาอยู่? ช่วยกันสิ</h1>
-    <hr />
+  <Base title="ร่วมพัฒนา">
     <blockquote>ร่วมกันพัฒนา สร้างสังคม แห่งการแบ่งปัน</blockquote>
-    <h2 id="technologystack">Technology Stack</h2>
-    <ul>
-      <li><strong>Hosting</strong>: <a href="https://zeit.co/now">https://zeit.co/now</a> @ <a href="https://technukrom.now.sh/">Technukrom</a></li>
-      <li><strong>Frontend Framework</strong>: <a href="https://nextjs.org/">Nextjs</a></li>
-      <li><strong>DB &amp; Backend</strong>: Firestone by Firebase</li>
-    </ul>
-    <h2 id="todo">TODO</h2>
-    <ul>
-      <li>เขียน Readme</li>
-      <li>เขียน Doc</li>
-      <li>ทำ SEO</li>
-    </ul>
-    <h1 id="needhelp">Need Help</h1>
+
+    <p>
+      ถ้าสนใจร่วมพัฒนา ตอนนี้ ยังมีรายละเอียดยม่มาก 
+      โดยในเบื้องต้นสามารถส่งมาที่<a href="mailto:mildronize@gmail.com">เมลผม</a>ได้ครับ เรื่อง Document และ design จะทยอยใส่ครับ 
+       เพื่อเป็น open source ที่ดี
+    </p>
+
+    <h2>Need Help</h2>
     <ul>
       <li>แหล่งข้อมูลภาษาไทย ทุกที่</li>
-      <li>Logo design</li>
-      <li>การออกแบบหน้าเว็บหลัก</li>
       <li>ค่า Domain </li>
       <li>ค่า Hosting (อาจจะมีในอนาคต ถ้าระบบใหญ่มากกว่านี้)</li>
     </ul>
-    อ่านเพิ่มเติมได้<a href="https://github.com/TechNukrom/technukrom/issues/2">การพัฒนาแอพ Phase ที่ 1</a>
+    อ่านข้อมูลเพิ่มเติมได้ที่ <a href="/roadmap">Road Map</a>
+    <Link href="/roadmap"><a>Road Map</a></Link>
   </Base>
 )

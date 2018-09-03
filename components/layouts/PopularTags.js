@@ -25,8 +25,6 @@ export default class extends React.Component {
         .child('tag_count')
         .orderByValue()
         .limitToLast(this.num_tags))
-    console.log(data)
-    console.log(JSON.stringify(data))
 
     let out = []
     for (var key in data) {
@@ -61,7 +59,7 @@ export default class extends React.Component {
         }
         `}</style>
 
-        <h4>Top Tags</h4>
+        <h4>Top Topic</h4>
         <div class={`element ${isLoading?"is-loading":""}`}>
           { !isLoading && 
             <div className="is-size-6">{
