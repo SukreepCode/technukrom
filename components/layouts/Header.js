@@ -23,10 +23,12 @@ export default class Header extends React.Component {
       >
         <div className="container is-offset-6-desktop">
           <div className="navbar-brand">
-            <a href="/" className="navbar-item">
+            <Link prefetch href="/">
+              <a  className="navbar-item">
               <img src="/static/logo-banner.png" />
-            </a>
-            <Link href="/new">
+              </a>
+            </Link>
+            <Link prefetch href="/new">
               <a className="navbar-item">
                 ล่าสุด
               </a>

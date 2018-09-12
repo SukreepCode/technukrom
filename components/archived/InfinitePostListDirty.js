@@ -1,8 +1,8 @@
-import Base from './layouts/Base'
-import { firestore } from '../stores/firebaseInit'
+import Base from '../layouts/Base'
+import { firestore } from '../../stores/firebaseInit'
 import dateFormat from 'dateformat';
 import React from 'react';
-import PostItem from './archived/PostItem';
+import PostItem from './PostItem';
 
 const NUM_DATA = 20;
 

@@ -1,6 +1,6 @@
 
 
-import { database } from '../../stores/firebaseInit'
+import { database } from '../stores/firebaseInit'
 
 export default class extends React.Component {
 

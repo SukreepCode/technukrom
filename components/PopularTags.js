@@ -1,6 +1,6 @@
 
 
-import { database } from '../../stores/firebaseInit'
+import { database } from '../stores/firebaseInit'
 import Link from 'next/link'
 
 export default class extends React.Component {
@@ -59,7 +59,7 @@ export default class extends React.Component {
         }
         `}</style>
 
-        <h4>Top Topic</h4>
+        <h4>Popular Topic</h4>
         <div class={`element ${isLoading?"is-loading":""}`}>
           { !isLoading && 
             <div className="is-size-6">{

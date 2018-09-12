@@ -2,8 +2,8 @@ import InfinitePostList from '../components/InfinitePostList';
 import { firestore } from '../stores/firebaseInit'
 
 import Base from '../components/layouts/Base'
-import Stat from '../components/layouts/Stat';
-import PopularTags from '../components/layouts/PopularTags';
+import Stat from '../components/Stat';
+import PopularTags from '../components/PopularTags';
 
 const NUM_POSTS = 5
 
@@ -16,7 +16,7 @@ const initQuery = async () => {
 const Index = () => (
   <Base title="Technukrom">
     <PopularTags /> 
-    <h3>{NUM_POSTS} โพสล่าสุด</h3>
+    <h3>Recent Posts</h3>
     <InfinitePostList 
       refInitQuery={initQuery()} 
       numData={NUM_POSTS}
